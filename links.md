@@ -27,3 +27,10 @@ https://www.g-mark.org/award/describe/44527
 
 飛行制限面geojson  
 http://cyberjapandata.gsi.go.jp/xyz/kokuarea/8/226/101.geojson
+
+弁護士による人工知能(AI）、機械学習、深層学習（ディープラーニング）の基礎講座  
+http://storialaw.jp/blog/2335
+
+>それは「人工知能を利用したビジネスをどうやって知的財産制度で保護するか」です。
+
+個人的には保護したいわけではないが、逆にユーザーがどこを気にするのか、どこをクリアにすればオープンに利用できるのか、その点で重要。
