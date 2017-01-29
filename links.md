@@ -48,3 +48,8 @@ http://plantix.net/
 NVIDIAの記事  
 How AI Helps Farmers Combat Plant Disease  
 https://blogs.nvidia.com/blog/2016/12/13/ai-fights-plant-disease/
+
+##RQGIS  
+https://github.com/jannes-m/RQGIS
+
+QGISからRを呼び出すんじゃなくて、RからQGISを呼び出す発想
