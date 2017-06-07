@@ -1,0 +1,93 @@
+// STEP 7 自分のWebページとして表示したい場合
+// 以下をhtmlとして保存して、サーバーにアップロードして下さい。
+// なお、保存の際の文字コードはUTF-8として下さい。
+
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>地理院タイル+迅速測図+土壌図+地質図</title>
+<link href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" media="screen, print" rel="stylesheet">
+<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+<style type="text/css">
+/* CSSの部分を以下にペースト*/
+#map {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 2px solid blue;
+}
+</style>
+</head>
+<body>
+<!-- HTML の部分を以下にペースト-->
+<div id="map"></div>
+
+<script type="text/javascript">
+// JavaScriptの部分を以下にペースト
+// STEP 2: 室蘭市空中写真追加  -------------------------------------
+// 地理院タイル 出典
+var attribution_ct = '<a href="http://www.gsi.go.jp">国土地理院</a> <a href="http://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a>';
+// 地理院標準タイルおよび出典
+var basemap_ct = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+  attribution: attribution_ct
+});
+// 農研機構
+var attribution_naro = '<a href="http://www.naro.affrc.go.jp/" target="_blank">農研機構</a>';
+// AIST
+var attribution_aist = '<a href="http://www.aist.go.jp/" target="_blank">産総研</a>';
+// 迅速測図タイルbase
+var basemap_rapid = L.tileLayer('http://habs.dc.affrc.go.jp/rapid16/{z}/{x}/{y}.png', {
+  attribution: attribution_naro,
+  tms: true
+});
+// 迅速測図タイルoverlay
+var overlay_rapid = L.tileLayer('http://habs.dc.affrc.go.jp/rapid16/{z}/{x}/{y}.png', {
+  attribution: attribution_naro,
+  opacity:0.6,
+  tms: true
+});
+// 土壌タイルおよび出典
+var basemap_soil = L.tileLayer('http://soil-inventory.dc.affrc.go.jp/tile/figure/{z}/{x}/{y}.png', {
+  attribution: attribution_naro
+});
+// 土壌タイルoverlay
+var overlay_soil = L.tileLayer('http://soil-inventory.dc.affrc.go.jp/tile/figure/{z}/{x}/{y}.png', {
+  opacity:0.6,
+  attribution: attribution_naro
+});
+// 地質タイルおよび出典
+var basemap_geol = L.tileLayer('https://gbank.gsj.jp/seamless/tilemap/basic/g/{z}/{y}/{x}.png', {
+  attribution: attribution_aist
+});
+// 地質タイルおよび出典overlay
+var overlay_geol = L.tileLayer('https://gbank.gsj.jp/seamless/tilemap/basic/g/{z}/{y}/{x}.png', {
+  opacity:0.6,
+  attribution: attribution_aist
+});
+// 地図選択
+var baseMaps = {
+  "地理院タイル": basemap_ct,
+  "迅速測図": basemap_rapid,
+  "土壌図": basemap_soil,
+  "地質図": basemap_geol
+};
+var overlayMaps = {
+  "迅速測図": overlay_rapid,
+  "土壌図": overlay_soil,
+  "地質図": overlay_geol
+    };
+// 地理院タイル・室蘭市空中写真を用いた地図の生成
+var map = L.map('map', {
+  layers: basemap_ct,
+  center: [35.686302, 139.776306],
+  zoom: 11
+});
+// タイル選択コントロールの追加
+L.control.layers(baseMaps,overlayMaps).addTo(map);
+</script>
+</body>
+</html>
