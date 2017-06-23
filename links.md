@@ -58,3 +58,6 @@ QGISからRを呼び出すんじゃなくて、RからQGISを呼び出す発想
 http://opencamps.org/
 
 >The world's largest mission-driven open source conference, with 6,000+ attendees joining for 25+ conferences & events, featuring 400+ sessions on dozens of open source technologies.
+
+##jupyterで地図表示
+http://nbviewer.jupyter.org/github/ocefpaf/folium_notebooks/tree/master/
