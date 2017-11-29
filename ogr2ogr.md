@@ -10,3 +10,6 @@ ogr2ogr -t_srs "EPSG:3100" -f "ESRI Shapefile" diss.shp(あてファイル) vg.s
 --config GDAL_CACHEMAX 1024　は効いて無さそう。
 
 最後の GROUP BYを除いても、走ることは走る。ただし、時間がかなり余分にかかる。
+
+
+for %i in (*.shp) do ogr2ogr -f "ESRI Shapefile" -append ..\merge.shp %i
