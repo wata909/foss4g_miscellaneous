@@ -13,6 +13,12 @@ lumesh_all_spatial_gix:インデックス名
 public.lumesh_all:テーブル名  
 gist: indexの作り方。
 
+## 集計
+
+```
+    SELECT lu, COUNT(lu) FROM river_admin_join GROUP BY city, lu ORDER BY city ASC, lu ASC;
+```
+
 ## 空間検索、（まだ、作成中）
 
 ```
