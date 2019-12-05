@@ -16,7 +16,7 @@ gist: indexの作り方。
 ## 集計
 
 ```
-    SELECT lu, COUNT(lu) FROM river_admin_join GROUP BY city, lu ORDER BY city ASC, lu ASC;
+SELECT city code, lu, count (lu) FROM tumesh all GROUP BY city code, lu ORDER BY city code ASC, lu ASC:
 ```
 
 ## 空間検索、（まだ、作成中）
