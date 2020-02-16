@@ -2,7 +2,7 @@
 
 ## ファイル一括変換
 ### shp を geojsonへ
-for %i in (*.shp) do ogr2ogr -s_srs EPSG:4326 -t_srs EPSG:4326 -f geoJSON .\geojson\rapid%~ni.geojson %i
+for %i in (*.shp) do ogr2ogr -s_srs EPSG:4326 -t_srs EPSG:4326 -f geoJSON %~ni.geojson %i
 
 ### gejson を shpへ
 for %i in (*.geojson) do ogr2ogr -f "ESRI Shapefile" "%~ni.shp" %i
