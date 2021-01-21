@@ -25,4 +25,11 @@ ogrmerge -f GPKG -o merged.gpkg *.geojson
 - --config GDAL_CACHEMAX 1024　は効いて無さそう。
 - 最後の GROUP BYを除いても、走ることは走る。ただし、時間がかなり余分にかかる。
 
+- ogr2ogr output.shp aaaa.shp -dialect sqlite -sql "SELECT ST_Union(geometry),A40_001, A40_002, A40_003 FROM aaaa GROUP BY A40_003" 
+ -lco ENCODING=UTF-8（もしくはCP932） オプションをつけたら全角文字カラムでも認識してくれました〜。
+
+
+
+https://qiita.com/nishi_bayashi/items/4520ac228e845779af64#comment-0f4a840480999cc969dc
+
 
