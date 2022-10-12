@@ -17,7 +17,10 @@ for %i in (*.shp) do ogr2ogr -f "ESRI Shapefile" -append ..\merge.shp %i
 ### geojsonを一つのgpkgレイヤにマージ
 ogrmerge -f GPKG -single -o merged_single.gpkg *.geojson
 
-### 別々つのgpkgレイヤにマージ
+### geojsonを一つのFlatGeobufレイヤにマージ
+ogrmerge -f FlatGeobuf -single -o merged_single.fgb *.json
+
+### 別々のgpkgレイヤにマージ
 ogrmerge -f GPKG -o merged.gpkg *.geojson
 
 ## ファイルディゾルブ
