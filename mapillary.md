@@ -21,7 +21,7 @@
     ```
     exiftool -csv -GPSLongitude -GPSLatitude -GPSAltitude -n *.JPG >exif.csv
     ```
-    2. 以下のコマンドを実施し、点を作成
+    2. 以下のコマンドを実施し、点を作成。 -oo AUTODETECT_TYPE=YES でデータ型を指定（高さを数値にする）。なお、csvtファイルを作っておいてもデータ型は指定できる。
     ```
     ogr2ogr -oo AUTODETECT_TYPE=YES -dialect SQLite -sql "SELECT *, MakePoint(CAST(GPSLongitude AS float),CAST(GPSLatitude AS float)) FROM exif" -a_srs EPSG:4612 point.geojson exif.csv
     ```
