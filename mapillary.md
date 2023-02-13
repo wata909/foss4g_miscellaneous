@@ -19,7 +19,7 @@
 4. 必要ではないが、データの確認方法。
     1. 以下の手順で、画像の EXIF からCSVを生成  
     ```
-    exiftool -csv -GPSLongitude -GPSLatitude -n *.JPG >exif.csv
+    exiftool -csv -GPSLongitude -GPSLatitude -GPSAltitude -n *.JPG >exif.csv
     ```
     2. 以下のコマンドを実施し、点を作成
     ```
