@@ -23,11 +23,11 @@
     ```
     2. 以下のコマンドを実施し、点を作成
     ```
-    ogr2ogr -dialect SQLite -sql "SELECT *, MakePoint(CAST(GPSLongitude AS float),CAST(GPSLatitude AS float)) FROM exif" -a_srs EPSG:4612 point.geojson exif.csv
+    ogr2ogr -oo AUTODETECT_TYPE=YES -dialect SQLite -sql "SELECT *, MakePoint(CAST(GPSLongitude AS float),CAST(GPSLatitude AS float)) FROM exif" -a_srs EPSG:4612 point.geojson exif.csv
     ```
     3. 以下のコマンドを実施し、線分を作成
    ```
-   ogr2ogr -dialect SQLite -sql "SELECT *, MakeLine(MakePoint(CAST(GPSLongitude AS float),CAST(GPSLatitude AS float))) FROM exif" -a_srs EPSG:4612 line.geojson exif.csv
+   ogr2ogr -oo AUTODETECT_TYPE=YES -dialect SQLite -sql "SELECT *, MakeLine(MakePoint(CAST(GPSLongitude AS float),CAST(GPSLatitude AS float))) FROM exif" -a_srs EPSG:4612 line.geojson exif.csv
    ```
 
 ## 位置座標付きファイルから、位置情報を抜き出して、ラインファイルを作る場合
