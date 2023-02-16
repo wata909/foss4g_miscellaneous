@@ -45,14 +45,22 @@ gdalでキャッシュのサイズを指定する方法。
 となる。
 
 ## Float32の画像を、Int16に変換する。サンプルとして3バンドの画像を作って試す。
-
-  ```gdalbuildvrt -separate merge.vrt Float32_1.tif Float32_2.tif Float32_3.tif```
-  
-  ```gdal_translate merge.vrt Float32_3band.tif```
-  
-  ```gdal_calc -A Float32_3band.tif --outfile=Float32_3band_1000.tif --allBands=A --calc="A*1000"```
-  
-  ```gdal_translate Float32_3band_1000.tif Int16.tif -ot Int16```
+```
+ gdalbuildvrt -separate merge.vrt Float32_1.tif Float32_2.tif Float32_3.tif
+ gdal_translate merge.vrt Float32_3band.tif
+ gdal_calc -A Float32_3band.tif --outfile=Float32_3band_1000.tif --allBands=A --calc="A*1000"```
+ gdal_translate Float32_3band_1000.tif Int16.tif -ot Int16
+```
+  ## Cloud Optimized Geotiff を作る
+- 参考は[Cloud Optimized GeoTIFFを置いてみました](https://zenn.dev/boiledorange73/articles/0057-using-cog)
+  - メモリ量を設定
+  - EPSG:3857に変換
+  - COGに変換
+```
+set GDAL_CACHEMAX=10240
+gdalwarp -t_srs epsg:3857 -r lanczos tokyo5000-3100.tif tokyo5000-3857.tif
+gdal_translate tokyo5000-3857.tif cog-tokyo5000-3857.tif -of COG -co COMPRESS=DEFLATE -co RESAMPLING=LANCZOS
+```
 
 ## Convert MODIS HDF File
 まず、 modis_hdf2erdas_ll_wgs84.sh http://www.grassbook.org/neteler/useful/modis_hdf2erdas_ll_wgs84.sh を使うと、MODIS HDFファイルをERDAS IMGファイルに変換できる。Thanks, Markus!
