@@ -1,4 +1,4 @@
-#ogr2ogr tipx
+# ogr2ogr tipx
 
 ## ファイル一括変換
 ### shp を geojsonへ
@@ -10,10 +10,14 @@ for %i in (*.geojson) do ogr2ogr -f "ESRI Shapefile" "%~ni.shp" %i
 ### csvをgeojsonに変換
 for %N in (*.csv) do ogr2ogr -f "GeoJSON"  -oo X_POSSIBLE_NAMES=longitude  -oo Y_POSSIBLE_NAMES=latitude %N.geojson %N
 
+### csvをFlatGeobuf形式に変換
+FOR %F IN (*.csv) do ogr2ogr -f "FlatGeobuf" "%~nF.fgb" "%F" -s_srs EPSG:4326 -t_srs EPSG:4326 -oo X_POSSIBLE_NAMES="経度" -oo Y_POSSIBLE_NAMES="緯度" -append
+
+### csvファイルの文字コードを変更する
+FOR %F IN (*.csv) do iconv -f CP932 -t UTF-8 "%F" > "%F_UTF-8.csv"
+
 ### fgbの属性値に基づき点データを生成する
 ogr2ogr -f "FlatGeobuf" point.fgb 08564_Tone_With_Daihyoten.fgb -dialect sqlite -sql "SELECT 地番, 所在, 代表点経度, 代表点緯度, MakePoint(代表点経度, 代表点緯度, 4612) AS geometry FROM '08564_Tone_With_Daihyoten'" -a_srs EPSG:4612
-
-
 
 ## ファイルマージ
 ### 複数のshpを一つのshpへ
