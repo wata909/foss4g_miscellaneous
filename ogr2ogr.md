@@ -1,4 +1,4 @@
-# ogr2ogr tipx
+# ogr2ogr TIPS
 
 ## ファイル一括変換
 ### shp を geojsonへ
