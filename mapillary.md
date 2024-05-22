@@ -1,12 +1,31 @@
 # Mapillary upload 作業メモ
 
-## 位置座標付きファイルを単純にアップロードする場合
+## Macの場合
+- conda activate mapillary
+- 作業フォルダに移動
+- mapillary_tools process_and_upload ./
+
+## GPX ファイルから、画像の位置情報を付与する
+### mac環境でGPXデータをZ1に与える場合
+- `exiftool -geotag ./combined.gpx ./*.JPG` でできる
+- `mapillary_tools process_and_upload ./*.JPG　--skip_process_errors` でアップロード
+
+
+### mac環境でGPXデータをGoProMaxに与える場合
+- 基本は`exiftool -geotag ./combined.gpx ./*.JPG`でOK
+   - ただし、小笠原の最初のシークエンスの場合、なぜか、時間がずれていた
+   - `exiftool -geotag combined.gpx '-geosync=-264' ./*.JPG `で、時差を修正
+- exiftool -geotag combined.gpx '-geosync=-264' ./*.JPG 
+
+## Winの場合
+
+### 位置座標付きファイルを単純にアップロードする場合
 
 - mapirally_tools_win64.exe と upload.bat をアップロードしたい画像があるフォルダに入れて、upload.bat を実行すれば OK
 - 注意事項として、サブフォルダ、その他ファイル等があると、それらもまとめてアップロード用の設定ファイルを作る
   - なので、必要な画像だけ temporary にフォルダを作って、アップするのがいいだろう。
 
-## GPX ファイルから、画像の位置情報を付与する
+### GPX ファイルから、画像の位置情報を付与する
 
 - 以下のページを参考
   - https://exiftool.org/geotag.html
@@ -30,7 +49,7 @@
    ogr2ogr -oo AUTODETECT_TYPE=YES -dialect SQLite -sql "SELECT *, MakeLine(MakePoint(CAST(GPSLongitude AS float),CAST(GPSLatitude AS float))) FROM exif" -a_srs EPSG:4612 line.geojson exif.csv
    ```
 
-## 位置座標付きファイルから、位置情報を抜き出して、ラインファイルを作る場合
+### 位置座標付きファイルから、位置情報を抜き出して、ラインファイルを作る場合
 
 1. Windwos でやる場合、exiftool を同じフォルダにコピー
 2. `exiftool -csv -GPSLongitude -GPSLatitude -n *.JPG >exif.csv` で、csv ファイルに位置情報を書き出し
@@ -40,4 +59,4 @@
    ```
    ogr2ogr -dialect SQLite -sql "SELECT *, MakeLine(MakePoint(CAST(GPSLongitude AS float),CAST(GPSLatitude AS float))) FROM exif" -a_srs EPSG:4612 line.geojson exif.csv
    ```
-
+   
