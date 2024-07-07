@@ -3,7 +3,10 @@
 ## Macの場合
 - conda activate mapillary
 - 作業フォルダに移動
-- mapillary_tools process_and_upload ./
+- `sh ./combined.combine_gpx.sh`で、ファイルを結合
+- `exiftool -csv -GPSLongitude -GPSLatitude -GPSAltitude -n *.JPG >exif.csv` でCSVを
+- `exiftool -geotag ./combined.gpx ./*.JPG` でできる
+- `mapillary_tools process_and_upload ./*.JPG` でアップロード
 
 ## GPX ファイルから、画像の位置情報を付与する
 ### mac環境でGPXデータをZ1に与える場合
