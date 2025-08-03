@@ -8,6 +8,12 @@
 - `exiftool -geotag ./combined.gpx ./*.JPG` でできる
 - `mapillary_tools process_and_upload ./*.JPG` でアップロード
 
+### サブフォルダに入っているJPGを親フォルダに移動するワンライナー
+- find . -mindepth 2 -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) -exec sh -c 'mv -n "$@" .' sh {} +
+
+
+
+
 ## GPX ファイルから、画像の位置情報を付与する
 ### mac環境でGPXデータをZ1に与える場合
 - `exiftool -geotag ./combined.gpx ./*.JPG` でできる
